@@ -107,9 +107,10 @@ public class Player : MonoBehaviour
             if (_gameManager != null)
             {
                 _gameManager.GameOver = true;
+                _gameManager.ClearSceneFromExistingEnemies();
             }
             _uiManager.DisplayMainMenuImage(true);
-            if (_gameManager.CoopModeEnabled) {
+            if (_gameManager != null && _gameManager.CoopModeEnabled) {
                 _gameManager.ClearSceneFromExistingPlayers();
             }
             else
@@ -121,13 +122,10 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-#if UNITY_ANDROID
+
         float horizontalInput = CrossPlatformInputManager.GetAxis("Horizontal");
         float verticalInput = CrossPlatformInputManager.GetAxis("Vertical"); 
-#else
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
-#endif
+
         if (horizontalInput > 0) {
             Debug.Log(horizontalInput);
         }

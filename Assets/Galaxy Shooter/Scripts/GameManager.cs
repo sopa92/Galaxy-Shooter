@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 	void Update () {
         if (GameOver)
         {
-            if (Input.GetKey(KeyCode.Return) || Input.GetMouseButtonDown(0))
+            if (Input.GetKey(KeyCode.Return))
             {
                 Instantiate(_PlayerPrefab, Vector3.zero, Quaternion.identity);
 
@@ -55,6 +55,15 @@ public class GameManager : MonoBehaviour
 
     public void ClearSceneFromExistingPlayers() {
         GameObject existingPlayers = GameObject.Find("Co-Op_Players(Clone)");
+        if (existingPlayers != null)
+        {
+            Destroy(existingPlayers.gameObject);
+        }
+    }
+
+    public void ClearSceneFromExistingEnemies()
+    {
+        GameObject existingPlayers = GameObject.Find("Enemy(Clone)");
         if (existingPlayers != null)
         {
             Destroy(existingPlayers.gameObject);
